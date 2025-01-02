@@ -101,9 +101,6 @@ where Country = 'Spain' and customerName like 'G%' or customerName Like 'R%';
 
 
 
-
-
-
 --OR
 --Select all customers from Germany or Spain:
 Select *
@@ -277,7 +274,6 @@ group by CategoryID;
 --The following SQL statement selects the first 50% of the records from the "Customers" table (for SQL Server/MS Access):
 select *
 from customers;
-
 
 
 --Sum
