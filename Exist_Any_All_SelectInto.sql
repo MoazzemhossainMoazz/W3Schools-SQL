@@ -89,3 +89,71 @@ WHERE ProductID = ALL
 
   select * into newtable
   from oldtable
+
+
+  ----------------------------------Insert Into select------------------------------
+  insert into Customers(CustomerName, City, Country)
+  select SupplierName, City, Country from Suppliers;
+
+  INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country)
+SELECT SupplierName, ContactName, Address, City, PostalCode, Country FROM Suppliers;
+
+INSERT INTO Customers (CustomerName, City, Country)
+SELECT SupplierName, City, Country FROM Suppliers
+WHERE Country='Germany';
+
+
+-------------------------------------SQL CASE Expression------------------------------
+--The following SQL goes through conditions and returns a value when the first condition is met:
+select OrderId, Quantity,
+CASE
+When Quantity > 30 then 'The quantity is greater than 30'
+when Quantity = 30 then 'The quantity is 30'
+else 'The quantity is under 30'
+end as QuantityText
+from order_details
+
+
+select OrderId, Quantity,
+case
+when quantity > 30 then 'The quantiy is greater than 30'
+when quantity = 30 then 'the quantity is 30'
+else 'the quantity less then 30'
+end as QuantityText
+from order_details
+
+
+select OrderId, Quantity,
+case
+when quantity > 30 then 'the quantity is greater than 30'
+when quantity = 30 then 'The quantity is 30'
+else 'The quantity less then 30'
+end as QuantityText
+from order_details
+
+
+select CustomerName, City, Country
+from Customers
+order by (case 
+when City is null then Country
+else City
+end);
+
+
+select CustomerName, City, Country
+from Customers
+order by (case
+when City is null then Country
+else City
+end);
+
+
+
+select ProductName, UnitPrice * (UnitsInStock + UnitsOnOrder)
+from Products;
+
+SELECT ProductName, UnitPrice * (UnitsInStock + IFNULL(UnitsOnOrder, 0))
+FROM Products;
+
+SELECT ProductName, UnitPrice * (UnitsInStock + IFNULL(UnitsOnOrder, 0))
+FROM dbo.products;
